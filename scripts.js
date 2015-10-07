@@ -66,7 +66,6 @@ function setClickCookie(i, clicked){
 	} else if (clicked) {
 		createCookie(id, clicked);
 	}
-
 }
 
 
