@@ -61,11 +61,12 @@ function setClickCookie(i, clicked){
 	var id = "c" + i.toString();
 	var cookie = readCookie(id);
 
-	if (cookie != null){
+	if (cookie != null || !clicked){
 		eraseCookie(id);
+	} else if (clicked) {
+		createCookie(id, clicked);
 	}
 
-	createCookie(id, clicked);
 }
 
 
