@@ -13,14 +13,9 @@
   margin: auto;
 }
 
-#header h1 {
+#header * {
   display: inline-block;
 }
-
-#header button {
-  display: inline-block;
-}
-
 
 td {
    width: 120px;
