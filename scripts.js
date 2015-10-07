@@ -1,0 +1,64 @@
+function shuffleArray(t){for(var r,c,i=t.length;0!==i;)c=Math.floor(Math.random()*i),i-=1,r=t[i],t[i]=t[c],t[c]=r;return t}
+
+var elements = [
+	"Accusations of St George Superiority",
+  "Procedural Showboating",
+  "Discussion of Privilege",
+  "Chair gets challenged",
+  "Personal copy of Roberts Rules seen",
+  "Criticism of new proxy system",
+  "Dramatic exit",
+  "Abrupt Adjournment",
+  "Vuvuzela!",
+  "Chair threatens to kick someone out",
+  "Uncomfortable silence",
+  "YOU ATE A SAMOSA",
+  "Motion to recess",
+  "Technical Difficulties",
+  "Anti-Harper sentiment",
+  "Pierre Harfouche",
+  "Mention of a lawsuit",
+  "Shawn Desman is mentioned",
+  "Someone starts a frosh cheer",
+  "Premature BINGO!",
+  "Tears",
+  "Room is full",
+  "Samosas run out before start of motions",
+  "CFS is mentioned",
+  "Inappropriate pun"
+];
+
+function generate() {
+  var c = [];
+  var i, j;
+  var table = document.getElementById("main");
+  var shuffledElements = shuffleArray(elements);
+
+  for (i = 0; i < table.children[0].children.length; i++){
+    var row = table.children[0].children[i];
+    for (j = 0; j < row.children.length; j++){
+      var cell = row.children[j];
+      cell.clicked = false;
+      cell.onclick = click.bind(cell);
+      cell.innerHTML = shuffledElements[i * 4 + j];
+    }
+  }
+
+  return shuffledElements.slice(0, 25);
+};
+
+function click() {
+  if (!this.clicked) {
+    this.style.backgroundColor = "red";
+    this.clicked = true;
+  } else {
+    this.style.backgroundColor = "white";
+  	this.clicked = false;
+  }
+}
+
+function init () {
+	generate();
+}
+
+window.onload = init;
