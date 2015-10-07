@@ -103,6 +103,8 @@ function generate() {
 			cell.clicked = CellClickedEh(cell._index);
 			if (cell.clicked) {
 				cell.style.backgroundColor = "red";
+			} else {
+				cell.style.backgroundColor = "white";
 			}
     }
   }
