@@ -53,7 +53,9 @@ var elements = [
   "Samosas run out before start of motions",
   "CFS is mentioned",
   "Inappropriate pun",
-	"Throwaway war on Twitter"
+	"Throwaway war on Twitter",
+	"Someone references Ashkon",
+	"Someone orders a pizza"
 ];
 
 
@@ -109,7 +111,6 @@ function generate() {
 };
 
 function click() {
-
   if (!this.clicked) {
     this.style.backgroundColor = "red";
     this.clicked = true;
@@ -118,9 +119,22 @@ function click() {
   	this.clicked = false;
   }
 	setClickCookie(this._index, this.clicked);
-
 }
 
+
+function reset() {
+	var i, id;
+	eraseCookie("cells");
+	for (i = 0; i < 25; i++){
+		id = "c" + i.toString();
+		eraseCookie(id);
+	}
+
+	// repopulate
+	var cells = generate();
+	var cellstr = JSON.stringify(cells);
+	createCookie("cells", cellstr);
+}
 
 
 
@@ -128,6 +142,9 @@ function init () {
 	var cells = generate();
 	var cellstr = JSON.stringify(cells);
 	createCookie("cells", cellstr);
+
+	var header = document.getElementById("header");
+	header.style.width = document.getElementById('main').clientWidth;
 }
 
 window.onload = init;

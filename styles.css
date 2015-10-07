@@ -1,7 +1,29 @@
-#main   { display: flex; float: center; }
+* {
+  font-family: Helvetica Neue, Arial, sans-serif;
+}
 
-body    { font-family: Helvetica Neue, Arial, sans-serif; }
-td      { width: 120px; height: 120px;
-          border: 3px solid black; }
- 
-table   { border-collapse: collapse; }
+#main {
+  display: flex;
+  float: center;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+#header {
+  margin: auto;
+}
+
+#header h1 {
+  display: inline-block;
+}
+
+#header button {
+  display: inline-block;
+}
+
+
+td {
+   width: 120px;
+   height: 120px;
+   border: 3px solid black;
+ }
