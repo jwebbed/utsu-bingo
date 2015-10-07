@@ -8,7 +8,7 @@ function createCookie(name,value,days) {
         var expires = "; expires="+date.toGMTString();
     }
     else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/";
+    document.cookie = name+"="+value+expires+";";
 }
 
 function readCookie(name) {
@@ -21,6 +21,7 @@ function readCookie(name) {
     }
     return null;
 }
+
 
 function eraseCookie(name) {
     createCookie(name,"",-1);
@@ -56,13 +57,15 @@ var elements = [
 ];
 
 
-function checkIfSet(i){
+function setClickCookie(i, clicked){
 	var id = "c" + i.toString();
 	var cookie = readCookie(id);
 
 	if (cookie != null){
-
+		eraseCookie(id);
 	}
+
+	createCookie(id, clicked);
 }
 
 
@@ -78,7 +81,8 @@ function generate() {
       var cell = row.children[j];
       cell.clicked = false;
       cell.onclick = click.bind(cell);
-      cell.innerHTML = shuffledElements[i * 4 + j];
+      cell.innerHTML = shuffledElements[i * 5 + j];
+			cell._index = i * 4 + j;
     }
   }
 
@@ -86,6 +90,7 @@ function generate() {
 };
 
 function click() {
+
   if (!this.clicked) {
     this.style.backgroundColor = "red";
     this.clicked = true;
@@ -93,6 +98,8 @@ function click() {
     this.style.backgroundColor = "white";
   	this.clicked = false;
   }
+	setClickCookie(this._index, this.clicked);
+
 }
 
 
