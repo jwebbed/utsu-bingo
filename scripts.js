@@ -75,11 +75,20 @@ function CellClickedEh(i) {
 }
 
 
+
 function generate() {
   var c = [];
   var i, j;
   var table = document.getElementById("main");
-  var shuffledElements = shuffleArray(elements);
+
+	var cookieElements = readCookie("cells");
+	if (cookieElements != null) {
+		var shuffledElements = JSON.parse(cookieElements);
+	} else {
+		var shuffledElements = shuffleArray(elements);
+	}
+
+
 
   for (i = 0; i < table.children[0].children.length; i++){
     var row = table.children[0].children[i];
@@ -93,9 +102,6 @@ function generate() {
 			if (cell.clicked) {
 				cell.style.backgroundColor = "red";
 			}
-
-
-
     }
   }
 
@@ -119,7 +125,9 @@ function click() {
 
 
 function init () {
-	generate();
+	var cells = generate();
+	var cellstr = JSON.stringify(cells);
+	createCookie("cells", cellstr);
 }
 
 window.onload = init;
