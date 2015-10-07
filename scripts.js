@@ -103,13 +103,12 @@ function generate() {
 			} else {
 				cell.innerHTML = shuffledElements[i * 5 + j];
 				cell.onclick = click.bind(cell);
-
-				cell.clicked = CellClickedEh(cell._index);
-				if (cell.clicked) {
-					cell.style.backgroundColor = "red";
-				} else {
-					cell.style.backgroundColor = "white";
-				}
+			}
+			cell.clicked = CellClickedEh(cell._index);
+			if (cell.clicked) {
+				cell.style.backgroundColor = "red";
+			} else {
+				cell.style.backgroundColor = "white";
 			}
 
     }
