@@ -39,7 +39,6 @@ var elements = [
   "Vuvuzela!",
   "Chair threatens to kick someone out",
   "Uncomfortable silence",
-  "YOU ATE A SAMOSA",
   "Motion to recess",
   "Technical Difficulties",
   "Anti-Harper sentiment",
@@ -97,15 +96,22 @@ function generate() {
     for (j = 0; j < row.children.length; j++){
       var cell = row.children[j];
 			cell._index = i * 5 + j;
-			cell.innerHTML = shuffledElements[i * 5 + j];
-			cell.onclick = click.bind(cell);
-
-			cell.clicked = CellClickedEh(cell._index);
-			if (cell.clicked) {
-				cell.style.backgroundColor = "red";
+			if (cell._index == 12){
+				cell.innerHTML = "YOU GOT A SAMOSA"
+				cell.style.fontWeight = "bold";
+				cell.onclick = click.bind(cell);
 			} else {
-				cell.style.backgroundColor = "white";
+				cell.innerHTML = shuffledElements[i * 5 + j];
+				cell.onclick = click.bind(cell);
+
+				cell.clicked = CellClickedEh(cell._index);
+				if (cell.clicked) {
+					cell.style.backgroundColor = "red";
+				} else {
+					cell.style.backgroundColor = "white";
+				}
 			}
+
     }
   }
 
