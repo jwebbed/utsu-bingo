@@ -1,5 +1,31 @@
 function shuffleArray(t){for(var r,c,i=t.length;0!==i;)c=Math.floor(Math.random()*i),i-=1,r=t[i],t[i]=t[c],t[c]=r;return t}
 
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
+
 var elements = [
 	"Accusations of St George Superiority",
   "Procedural Showboating",
@@ -25,8 +51,20 @@ var elements = [
   "Room is full",
   "Samosas run out before start of motions",
   "CFS is mentioned",
-  "Inappropriate pun"
+  "Inappropriate pun",
+	"Throwaway war on Twitter"
 ];
+
+
+function checkIfSet(i){
+	var id = "c" + i.toString();
+	var cookie = readCookie(id);
+
+	if (cookie != null){
+
+	}
+}
+
 
 function generate() {
   var c = [];
@@ -56,6 +94,9 @@ function click() {
   	this.clicked = false;
   }
 }
+
+
+
 
 function init () {
 	generate();
