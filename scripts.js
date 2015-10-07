@@ -70,7 +70,8 @@ function setClickCookie(i, clicked){
 
 function CellClickedEh(i) {
 	var id = "c" + i.toString();
-	return readCookie(id) != null;
+	var cookie = readCookie(id);
+	return cookie == "true";
 }
 
 
@@ -87,9 +88,11 @@ function generate() {
 			cell._index = i * 5 + j;
 			cell.innerHTML = shuffledElements[i * 5 + j];
 			cell.onclick = click.bind(cell);
+
 			cell.clicked = CellClickedEh(cell._index);
-
-
+			if (cell.clicked) {
+				cell.style.backgroundColor = "red";
+			}
 
 
 
