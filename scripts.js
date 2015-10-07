@@ -68,6 +68,11 @@ function setClickCookie(i, clicked){
 	}
 }
 
+function CellClickedEh(i) {
+	var id = "c" + i.toString();
+	return readCookie(id) != null;
+}
+
 
 function generate() {
   var c = [];
@@ -79,10 +84,15 @@ function generate() {
     var row = table.children[0].children[i];
     for (j = 0; j < row.children.length; j++){
       var cell = row.children[j];
-      cell.clicked = false;
-      cell.onclick = click.bind(cell);
-      cell.innerHTML = shuffledElements[i * 5 + j];
-			cell._index = i * 4 + j;
+			cell._index = i * 5 + j;
+			cell.innerHTML = shuffledElements[i * 5 + j];
+			cell.onclick = click.bind(cell);
+			cell.clicked = CellClickedEh(cell._index);
+
+
+
+
+
     }
   }
 
