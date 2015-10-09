@@ -1,3 +1,6 @@
+var title       = "UTSU Bingo"
+var centre_tile = "YOU GOT A SAMOSA";
+
 var elements = [
 	"Accusations of St George Superiority",
   "Procedural Showboating",
@@ -111,7 +114,7 @@ function generate() {
       var cell = row.children[j];
 			cell._index = i * 5 + j;
 			if (cell._index == 12){
-				cell.innerHTML = "YOU GOT A SAMOSA"
+				cell.innerHTML = centre_tile;
 				cell.style.fontWeight = "bold";
 				cell.onclick = click.bind(cell);
 			} else {
@@ -166,6 +169,7 @@ function init () {
 	document.getElementById("button").onclick = reset;
 
 	var header = document.getElementById("header");
+	document.getElementById("title").innerHTML = title;
 	header.style.width = document.getElementById('main').clientWidth;
 }
 
