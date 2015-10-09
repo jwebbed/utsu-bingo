@@ -1,5 +1,21 @@
-function shuffleArray(t){for(var r,c,i=t.length;0!==i;)c=Math.floor(Math.random()*i),i-=1,r=t[i],t[i]=t[c],t[c]=r;return t}
+function shuffleArray(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
 
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 function createCookie(name,value,days) {
     if (days) {
@@ -43,7 +59,6 @@ function CellClickedEh(i) {
 	var cookie = readCookie(id);
 	return cookie == "true";
 }
-
 
 
 function generate() {
@@ -118,6 +133,7 @@ function init () {
 	var cells = generate();
 	var cellstr = JSON.stringify(cells);
 	createCookie("cells", cellstr);
+	document.getElementById("button").onclick = reset;
 
 	var header = document.getElementById("header");
 	header.style.width = document.getElementById('main').clientWidth;
