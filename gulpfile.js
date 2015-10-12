@@ -8,7 +8,7 @@ var concat  = require('gulp-concat'),
 
 var paths = {
     src_html   : 'src/index.html',
-    src_styles : 'src/styles/*.css',
+    src_styles : 'src/main.css',
     src_script : 'src/script.js',
 
     dest       : 'dist/'
@@ -16,7 +16,6 @@ var paths = {
 
 gulp.task('css', function () {
     return gulp.src(paths.src_styles)
-        .pipe(concat('main.css'))
         .pipe(uncss({
             html: [paths.src_html]
         }))
@@ -41,3 +40,9 @@ gulp.task('html', function () {
 });
 
 gulp.task('default', ['css', 'js', 'html']);
+
+gulp.task('watch', ['default'], function () {
+    gulp.watch(paths.src_html, ['html']);
+    gulp.watch(paths.src_styles, ['css']);
+    gulp.watch(paths.src_script, ['js']);
+});
