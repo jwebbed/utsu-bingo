@@ -1,4 +1,4 @@
-#utsu-bingo
+# utsu-bingo
 
 Made by Jonathan Webb, Eugene Cheung, and someone else.
 
@@ -14,7 +14,7 @@ npm install
 
 To build, run
 ```shell
-gulp html
+gulp
 ```
 
 To deploy, run
