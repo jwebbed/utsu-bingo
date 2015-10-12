@@ -32,32 +32,59 @@ button {
 #header {
   border-bottom: 1px solid #bdbdbd;
   font-size: 0.75em;
-  padding: 2em;
+  padding: 0.25em 1em;
   width: 100%;
 }
 
-#header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.4em;
-}
+  #header > * {
+    display: inline-block;
+    margin: 0.5em 1em;
+    vertical-align: middle;
+  }
+
+  #header h1 {
+    font-size: 1.75rem;
+  }
 
 #board {
   border-collapse: collapse;
-  margin: 2em auto;
+  margin: 1em auto;
 }
 
-td {
-  border: 1px solid #bdbdbd;
-  cursor: pointer;
-  height: 120px;
-  padding: 0.5em;
-  width: 120px;
-}
-
-  td:hover {
-    background-color: #eee;
+  td {
+    border: 1px solid #bdbdbd;
+    cursor: pointer;
+    height: 120px;
+    padding: 0.5em;
+    transition: transform 0.2s;
+    width: 120px;
   }
 
-  td.toggled {
-    background-color: green;
-  }
+    td:hover {
+      background-color: #eee;
+    }
+
+    .toggled {
+      opacity: 0.4;
+      position: relative;
+      transform: scale(0.65);
+    }
+
+      .toggled::before,
+      .toggled::after {
+        background: #000;
+        content: '';
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+      }
+
+      .toggled::before {
+        transform: rotate(-45deg);
+      }
+
+      .toggled::after {
+        transform: rotate(45deg);
+      }
