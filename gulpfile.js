@@ -3,7 +3,7 @@ var ghPages = require('gulp-gh-pages'),
     htmlmin = require('gulp-htmlmin'),
     inline  = require('gulp-inline'),
     nano    = require('gulp-cssnano'),
-    uglify  = require('gulp-uglify');
+    closure = require('gulp-closure-compiler-service');
 
 var paths = {
     src_html   : 'src/index.html',
@@ -16,7 +16,9 @@ gulp.task('build', function () {
     return gulp.src(paths.src_html)
         .pipe(inline({
           base: '',
-          js: uglify(),
+          js: closure({
+            compilation_level: 'ADVANCED_OPTIMIZATIONS'
+          }),
           css: nano(),
           disabledTypes: ['svg', 'img'],
         }))
