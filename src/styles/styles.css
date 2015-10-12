@@ -1,11 +1,11 @@
 * {
-  font-family: Helvetica Neue, Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 #main {
+  border-collapse: collapse;
   display: flex;
   float: center;
-  border-collapse: collapse;
   margin: auto;
 }
 
@@ -26,6 +26,7 @@ td {
    text-align: center;
  }
 
- td:hover {
-     background-color: #ddd;
- }
+
+td:hover {
+  background-color: #ddd;
+}
