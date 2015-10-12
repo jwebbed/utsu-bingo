@@ -1,39 +1,43 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var htmlmin = require('gulp-htmlmin');
-var rename = require("gulp-rename");
-var concat = require('gulp-concat');
-var nano = require('gulp-cssnano');
-var uncss = require('gulp-uncss');
+var concat  = require('gulp-concat'),
+    gulp    = require('gulp'),
+    htmlmin = require('gulp-htmlmin'),
+    nano    = require('gulp-cssnano'),
+    rename  = require('gulp-rename'),
+    uglify  = require('gulp-uglify'),
+    uncss   = require('gulp-uncss');
 
-gulp.task('css', function() {
-	return gulp.src("styles/*.css")
-		.pipe(concat('main.css'))
-		.pipe(uncss({
-        html: ['_index.html']
-    	}))
-		.pipe(gulp.dest("dist/"))
-});
+var paths = {
+    src_html   : 'src/index.html',
+    src_styles : 'src/styles/*.css',
+    src_script : 'src/script.js',
 
-gulp.task('mincss', ['css'], function() {
-    return gulp.src('dist/main.css')
+    dest       : 'dist/'
+};
+
+gulp.task('css', function () {
+    return gulp.src(paths.src_styles)
+        .pipe(concat('main.css'))
+        .pipe(uncss({
+            html: [paths.src_html]
+        }))
         .pipe(nano())
-				.pipe(rename("main.min.css"))
-        .pipe(gulp.dest('dist/'));
+        .pipe(rename('main.min.css'))
+        .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('minjs', function() {
-	return gulp.src("scripts.js")
-		.pipe(uglify())
-		.pipe(rename("scripts.min.js"))
-		.pipe(gulp.dest("dist/"))
+gulp.task('js', function () {
+    return gulp.src(paths.src_script)
+        .pipe(uglify())
+        .pipe(rename('script.min.js'))
+        .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('min', ['minjs', 'mincss']);
-
-gulp.task('build', ['min'], function() {
-	return gulp.src('./_index.html')
-		 .pipe(htmlmin({collapseWhitespace: true}))
-		 .pipe(rename("index.html"))
-		 .pipe(gulp.dest("./"))
+gulp.task('html', function () {
+    return gulp.src(paths.src_html)
+        .pipe(htmlmin({
+            collapseWhitespace: true
+        }))
+        .pipe(gulp.dest(paths.dest));
 });
+
+gulp.task('default', ['css', 'js', 'html']);
