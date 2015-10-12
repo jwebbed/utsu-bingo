@@ -1,3 +1,7 @@
+'use strict';
+
+(function () {
+
 // ========================================================================= //
 // Customizable contents                                                     //
 // ========================================================================= //
@@ -94,7 +98,7 @@ function generateBoard (reset) {
         cell.clicked = true;
       }
 
-      if (cell.index == 12) {
+      if (cell.index === 12) {
         cell.innerHTML = centre_tile;
         cell.style.fontWeight = 'bold';
       } else {
@@ -139,3 +143,5 @@ window.onload = function () {
   document.getElementById('title').textContent = title;
   document.title = title;
 };
+
+})();
