@@ -125,7 +125,7 @@ function generate() {
 			if (cell.clicked) {
 				cell.style.backgroundColor = "red";
 			} else {
-				cell.style.backgroundColor = "white";
+				cell.style.backgroundColor = "";
 			}
 
     }
@@ -139,7 +139,7 @@ function click() {
     this.style.backgroundColor = "red";
     this.clicked = true;
   } else {
-    this.style.backgroundColor = "white";
+    this.style.backgroundColor = "";
   	this.clicked = false;
   }
 	setClickCookie(this._index, this.clicked);
