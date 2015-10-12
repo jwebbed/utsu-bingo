@@ -16,3 +16,8 @@ To build, run
 ```shell
 gulp
 ```
+
+To deploy, run
+```shell
+gulp deploy
+```

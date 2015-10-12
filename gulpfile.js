@@ -4,8 +4,9 @@ var concat  = require('gulp-concat'),
     nano    = require('gulp-cssnano'),
     rename  = require('gulp-rename'),
     uglify  = require('gulp-uglify'),
-    uncss   = require('gulp-uncss');
-    inline  = require('gulp-inline')
+    uncss   = require('gulp-uncss'),
+    inline  = require('gulp-inline'),
+    ghPages = require('gulp-gh-pages');
 
 var paths = {
     src_html   : 'src/index.html',
@@ -33,4 +34,9 @@ gulp.task('watch', ['html'], function () {
     gulp.watch(paths.src_html, ['html']);
     gulp.watch(paths.src_styles, ['html']);
     gulp.watch(paths.src_script, ['html']);
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('dist/index.html')
+    .pipe(ghPages());
 });
