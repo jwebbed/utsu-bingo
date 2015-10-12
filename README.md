@@ -1,11 +1,11 @@
 # utsu-bingo
 
-Made by Jonathan Webb, Eugene Cheung, and someone else.
+Made by [Jonathan Webb](https://github.com/jwebbed), [Eugene Cheung](https://github.com/arkon), and someone else.
 
 It has a number of features including:
 * Randomly generated on load
 * Click to highlight
-* Persistance between sessions via cookies
+* Persistance between sessions
 
 To setup the environment, run
 ```shell
