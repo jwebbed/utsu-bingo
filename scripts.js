@@ -170,7 +170,6 @@ function init () {
 
 	var header = document.getElementById("header");
 	document.getElementById("title").innerHTML = title;
-	//header.style.width = document.getElementById('main').clientWidth;
 }
 
 window.onload = init;
