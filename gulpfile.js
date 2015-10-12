@@ -4,7 +4,9 @@ var concat  = require('gulp-concat'),
     nano    = require('gulp-cssnano'),
     rename  = require('gulp-rename'),
     uglify  = require('gulp-uglify'),
-    uncss   = require('gulp-uncss');
+    uncss   = require('gulp-uncss'),
+    inline  = require('gulp-inline'),
+    ghPages = require('gulp-gh-pages');
 
 var paths = {
     src_html   : 'src/index.html',
@@ -14,35 +16,27 @@ var paths = {
     dest       : 'dist/'
 };
 
-gulp.task('css', function () {
-    return gulp.src(paths.src_styles)
-        .pipe(uncss({
-            html: [paths.src_html]
-        }))
-        .pipe(nano())
-        .pipe(rename('main.min.css'))
-        .pipe(gulp.dest(paths.dest));
-});
-
-gulp.task('js', function () {
-    return gulp.src(paths.src_script)
-        .pipe(uglify())
-        .pipe(rename('script.min.js'))
-        .pipe(gulp.dest(paths.dest));
-});
-
 gulp.task('html', function () {
     return gulp.src(paths.src_html)
+        .pipe(inline({
+          base: '',
+          js: uglify(),
+          css: nano(),
+          disabledTypes: ['svg', 'img'],
+        }))
         .pipe(htmlmin({
             collapseWhitespace: true
         }))
         .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('default', ['css', 'js', 'html']);
-
-gulp.task('watch', ['default'], function () {
+gulp.task('watch', ['html'], function () {
     gulp.watch(paths.src_html, ['html']);
-    gulp.watch(paths.src_styles, ['css']);
-    gulp.watch(paths.src_script, ['js']);
+    gulp.watch(paths.src_styles, ['html']);
+    gulp.watch(paths.src_script, ['html']);
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('dist/index.html')
+    .pipe(ghPages());
 });
