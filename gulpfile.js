@@ -15,12 +15,12 @@ var paths = {
 gulp.task('build', function () {
     return gulp.src(paths.src_html)
         .pipe(inline({
-          base: '',
-          js: closure({
-            compilation_level: 'ADVANCED_OPTIMIZATIONS'
-          }),
-          css: nano(),
-          disabledTypes: ['svg', 'img'],
+            base: '',
+            js: closure({
+                compilation_level: 'ADVANCED_OPTIMIZATIONS'
+            }),
+            css: nano(),
+            disabledTypes: ['svg', 'img'],
         }))
         .pipe(htmlmin({
             collapseWhitespace: true
