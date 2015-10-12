@@ -1,3 +1,7 @@
+'use strict';
+
+(function () {
+
 // ========================================================================= //
 // Customizable contents                                                     //
 // ========================================================================= //
@@ -89,12 +93,14 @@ function generateBoard (reset) {
       var cell = row.children[j];
       cell.index = i * 5 + j;
       cell.clicked = false;
+      cell.className = '';
 
       if (boardClicked.indexOf(cell.index) > -1) {
         cell.clicked = true;
+        cell.classList.add('toggled');
       }
 
-      if (cell.index == 12) {
+      if (cell.index === 12) {
         cell.innerHTML = centre_tile;
         cell.style.fontWeight = 'bold';
       } else {
@@ -103,14 +109,13 @@ function generateBoard (reset) {
 
       cell.onclick = onCellClick.bind(cell);
 
-      cell.style.backgroundColor = cell.clicked ? 'red' : '';
     }
   }
 }
 
 function onCellClick () {
-  this.style.backgroundColor = this.clicked ? '' : 'red';
   this.clicked = !this.clicked;
+  this.classList.toggle('toggled', this.clicked);
 
   saveClickedState(this.index, this.clicked);
 }
@@ -139,3 +144,5 @@ window.onload = function () {
   document.getElementById('title').textContent = title;
   document.title = title;
 };
+
+})();

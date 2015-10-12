@@ -13,6 +13,6 @@
     "gulp-cssnano": "^2.0.0",
     "gulp-gh-pages": "^0.5.3",
     "gulp-htmlmin": "^1.1.4",
-    "gulp-inline": "0.0.15",
+    "gulp-inline": "0.0.15"
   }
 }
