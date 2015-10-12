@@ -30,6 +30,8 @@ gulp.task('html', function () {
         .pipe(gulp.dest(paths.dest));
 });
 
+gulp.task('default', ['html']);
+
 gulp.task('watch', ['html'], function () {
     gulp.watch(paths.src_html, ['html']);
     gulp.watch(paths.src_styles, ['html']);

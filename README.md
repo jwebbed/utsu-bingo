@@ -14,7 +14,7 @@ npm install
 
 To build, run
 ```shell
-gulp
+gulp html
 ```
 
 To deploy, run
