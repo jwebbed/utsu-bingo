@@ -26,6 +26,8 @@ gulp.task('build', function () {
         .pipe(gulp.dest(paths.dest));
 });
 
+gulp.task('default', ['build']);
+
 gulp.task('watch', ['build'], function () {
     gulp.watch(paths.src_all, ['build']);
 });
