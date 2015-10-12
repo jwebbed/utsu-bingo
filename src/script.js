@@ -101,7 +101,7 @@ function generateBoard (reset) {
         cell.innerHTML = boardItems[i * 5 + j];
       }
 
-      cell.addEventListener('click', onCellClick.bind(cell));
+      cell.onclick = onCellClick.bind(cell);
 
       cell.style.backgroundColor = cell.clicked ? 'red' : '';
     }
@@ -134,7 +134,7 @@ function resetBoard () {
 window.onload = function () {
   generateBoard();
 
-  document.getElementById('reset').addEventListener('click', resetBoard);
+  document.getElementById('reset').onclick = resetBoard;
 
   document.getElementById('title').textContent = title;
   document.title = title;
