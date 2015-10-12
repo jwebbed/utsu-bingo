@@ -1,22 +1,18 @@
-var concat  = require('gulp-concat'),
+var ghPages = require('gulp-gh-pages'),
     gulp    = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
-    nano    = require('gulp-cssnano'),
-    rename  = require('gulp-rename'),
-    uglify  = require('gulp-uglify'),
-    uncss   = require('gulp-uncss'),
     inline  = require('gulp-inline'),
-    ghPages = require('gulp-gh-pages');
+    nano    = require('gulp-cssnano'),
+    uglify  = require('gulp-uglify');
 
 var paths = {
     src_html   : 'src/index.html',
-    src_styles : 'src/main.css',
-    src_script : 'src/script.js',
-
-    dest       : 'dist/'
+    src_all    : 'src/**/*',
+    dest       : 'dist/',
+    dest_built : 'dist/index.html'
 };
 
-gulp.task('html', function () {
+gulp.task('build', function () {
     return gulp.src(paths.src_html)
         .pipe(inline({
           base: '',
@@ -30,13 +26,11 @@ gulp.task('html', function () {
         .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('watch', ['html'], function () {
-    gulp.watch(paths.src_html, ['html']);
-    gulp.watch(paths.src_styles, ['html']);
-    gulp.watch(paths.src_script, ['html']);
+gulp.task('watch', ['build'], function () {
+    gulp.watch(paths.src_all, ['build']);
 });
 
-gulp.task('deploy', function() {
-  return gulp.src('dist/index.html')
-    .pipe(ghPages());
+gulp.task('deploy', function () {
+    return gulp.src(paths.dest_built)
+        .pipe(ghPages());
 });
