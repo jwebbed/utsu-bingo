@@ -15,14 +15,23 @@ gulp.task('css', function() {
 		.pipe(gulp.dest("dist/"))
 });
 
-gulp.task('min', function() {
+gulp.task('mincss', ['css'], function() {
+    return gulp.src('dist/main.css')
+        .pipe(nano())
+				.pipe(rename("main.min.css"))
+        .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('minjs', function() {
 	return gulp.src("scripts.js")
 		.pipe(uglify())
 		.pipe(rename("scripts.min.js"))
 		.pipe(gulp.dest("dist/"))
 });
 
-gulp.task('build', function() {
+gulp.task('min', ['minjs', 'mincss']);
+
+gulp.task('build', ['min'], function() {
 	return gulp.src('./_index.html')
 		 .pipe(htmlmin({collapseWhitespace: true}))
 		 .pipe(rename("index.html"))
