@@ -1,9 +1,9 @@
-var ghPages = require('gulp-gh-pages'),
+var closure = require('gulp-closure-compiler-service'),
+    ghPages = require('gulp-gh-pages'),
     gulp    = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     inline  = require('gulp-inline'),
-    nano    = require('gulp-cssnano'),
-    closure = require('gulp-closure-compiler-service');
+    nano    = require('gulp-cssnano');
 
 var paths = {
     src_html   : 'src/index.html',
